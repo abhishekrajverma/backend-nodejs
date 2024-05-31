@@ -10,8 +10,12 @@ dotenv.config({
 // Connect to the database and start the server
 connectToDatabase()
 .then(() => {
-    app.listen(process.env.PORT, () => {
-        console.log(`App is running on port ${process.env.PORT}`);
+    app.on('error', (error) => { // Listen for any errors that occur while connecting to the database 
+        console.error(`Error: ${error}`);
+        throw error;
+    });
+    app.listen(process.env.PORT || 8080, () => {
+        console.log(`Server is running on port ${process.env.PORT}`);
     });
 })
 .catch((error) => {
