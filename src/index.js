@@ -1,4 +1,4 @@
-import dotenv from 'dotenv';
+import dotenv from 'dotenv'; // always import dotenv at the top of the file to ensure that all environment variables are loaded before any other code is run 
 import {connectToDatabase} from './db/mongoose.js'
 import {app} from './app.js';
 // Load environment variables from the .env file 
@@ -14,7 +14,7 @@ connectToDatabase()
         console.error(`Error: ${error}`);
         throw error;
     });
-    app.listen(process.env.PORT || 8080, () => {
+    app.listen(process.env.PORT || 8000, () => {
         console.log(`Server is running on port ${process.env.PORT}`);
     });
 })
